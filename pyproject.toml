@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+
+name = "amisr_toolkit"
+dynamic = ["version"]
+description = "AMISR Toolkit"
+readme = "README.rst"
+requires-python= ">= 3.9"
+license = { file = "LICENSE" }
+authors = [
+    { name= 'Todd Valentic', email='todd.valentic@gmail.com' }
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent"
+]
+
+dependencies = [
+    "python-dateutil",
+    "python-magic",
+    "pytimeparse2",
+    "sapphire_config",
+    "texttable",
+    "importlib_resources>1.3; python_version < '3.10'"
+]
+
+[project.optional-dependencies]
+devel = [
+    'build',
+    'pyfakefs',
+    'pytest',
+    'ruff'
+    ]
+
+[project.urls]
+homepage="https://github.com/valentic/amisr_toolkit"
+repository="https://github.com/valentic/amisr_toolkit"
+
+[project.scripts]
+    demo = "amisr_toolkit.apps.demo:main"
+    atk_array_xml_to_json = "amisr_toolkit.apps.array_xml_to_json:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+version = {attr = "amisr_toolkit.metadata.__version__"}
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib"
+]
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E", 
+    # pyflakes
+    "F", 
+    # flake8-bugbear
+    "B", 
+    # isort
+    # I"
+    # flake8-simplify
+    "SIM", 
+    # docstyle
+    "D"
+]
+
